@@ -42,10 +42,9 @@ if ingredients_list:
         st.success('Your Smoothie is ordered!', icon="✅")
 
 my_dataframe_order = session.table("smoothies.public.orders").filter(col("ORDER_FILLED")==0).collect()
-    editable_df = st.data_editor(my_dataframe_order)
-    
-    time_to_insert_order=st.button('UPDATE ORDER')
-    #st.success("UPDATED")
-    if (time_to_insert_order):
-        st.success('Your is order updated', icon="✅")
+editable_df = st.data_editor(my_dataframe_order)
+time_to_insert_order=st.button('UPDATE ORDER')
+#st.success("UPDATED")
+if (time_to_insert_order):
+    st.success('Your is order updated', icon="✅")
         
