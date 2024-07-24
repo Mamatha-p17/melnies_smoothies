@@ -47,4 +47,18 @@ time_to_insert_order=st.button('UPDATE ORDER')
 #st.success("UPDATED")
 if (time_to_insert_order):
     st.success('Your is order updated', icon="✅")
+
+og_dataset = session.table("smoothies.public.orders")
+edited_dataset = session.create_dataframe(editable_df)
+    
+try:
+    og_dataset.merge(edited_dataset
+                             , (og_dataset['order_uid'] == edited_dataset['order_uid'])
+                             , [when_matched().update({'ORDER_FILLED': edited_dataset['ORDER_FILLED']})]
+        
+                        )
+    st.success('Order(s) updated', icon = '👍')
+    
+except:
+        st.error('something went wrong')    
         
